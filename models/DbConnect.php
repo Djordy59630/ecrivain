@@ -13,9 +13,6 @@ class DbConnect {
             $username = $params['user'];
             $password = $params['password'];
 
-
-
-
             $dBUsername = "root";
             $dBUPassword = "";
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);

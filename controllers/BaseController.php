@@ -16,6 +16,12 @@ class BaseController {
      */
     protected $twig;
 
+
+    // protected function userInfo($template, $userInfo)
+    // {
+
+    // }
+
     /**
      *
      */
@@ -23,6 +29,12 @@ class BaseController {
     {
         $this->loader = new \Twig\Loader\FilesystemLoader(APP_DIRECTORY . 'views');
         $this->twig = new \Twig\Environment($this->loader);
+
+        if( isset($_SESSION['user']))
+        {
+            $this->twig->addGlobal('session', $_SESSION['user']);
+        }
+        
     }
 
 }

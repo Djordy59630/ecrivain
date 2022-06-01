@@ -1,4 +1,5 @@
 <?php
+require('../models/Register.php');
 
 /**
  * 
@@ -6,21 +7,62 @@
  */
 class RegisterController extends BaseController {
 
-
 	// Initialisation du contructeur par défaut
 	public function __construct()
     {
     	parent::__construct();
    	}
 
-	// Page d'accueil des posts
+	// Index Page d'inscription
 	public function index($params=array()) {
+		
+		// on vérifie si le formulaire a été envoyé 
+		if(!empty($_POST))
+		{
+			// Le formulaire a été envoyé
+			// on vérifie que TOUS les champs sont remplis
+			if( isset($_POST["email"], $_POST["username"], $_POST["password"]) &&  
+			!empty($_POST["email"]) && !empty($_POST["username"]) && !empty($_POST["password"])
+			)
+			{
+				// Le Formulaire est complet
+				// On récupère les données en les protégeant 
+				$username = strip_tags($_POST["username"]);
+				// username unique
+				
+				// on vérifie l'adresse email
+				if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+					die("L'adresse email est incorrecte");
+				}
+				// on vérifie si l'adresse email n'existe pas
+				// On hash le mot de passe
+				$password = password_hash($_POST['password'], PASSWORD_ARGON2ID);
 
-		// on choisi la template à appeler
+				$register = new Register();
+				$register->addUser($_POST["email"], $_POST["username"], $password);
+
+				
+				// on connecte l'utilisateur
+				session_start();
+
+				//e on stocke dans $_session les information de l'utilisateur
+				$_SESSION["user"] = [
+					"username" => $username,
+					"email" => $_POST["email"],
+					"roles" => ["ROLE_USER"],
+				];
+
+				header('Location: /'); 
+
+			}else{
+				// Le formulaire n'est pas complet
+				die("Le Formulaire est imcomplet");
+			}
+		}
+	
 		$template = $this->twig->load('register/index.html');
-
-		// Puis on affiche avec la méthode render
 		echo $template->render([]);
 	}
+
 
 }

@@ -1,39 +1,38 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Djordy Decroix - Inscription</title>
+<title>Djordy Decroix - Inscription</title>
 {% endblock %}
 
 {% block body %}
 <section class="page-section portfolio bg-primary text-white mb-0" id="portfolio">
-    <div class="container">
-        <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Inscription</h2>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Portfolio Grid Items-->
-
-        <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Adresse mail</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text text-white">Nous ne partagerons jamais votre e-mail avec quelqu'un d'autre.</div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">j'accepte les conditions générales d'utilisation</label>
-            </div>
-            <button type="submit" class="btn btn-secondary">Valider</button>
-          </form>
-
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Inscription</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom divider-light">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
     </div>
+ 
+    <form method="post">
+      <div class="mb-3">
+        <label for="email" class="form-label">Adresse mail</label>
+        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text text-white">Nous ne partagerons jamais votre e-mail avec quelqu'un d'autre.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Nom d'utilisateur</label>
+        <input type="text" name="username" class="form-control" id="username">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input type="password" name="password" class="form-control" id="password">
+      </div>
+      <button type="submit" class="btn btn-secondary">Valider</button>
+    </form>
+  </div>
 </section>
 {% endblock %}

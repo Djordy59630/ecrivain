@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -19,20 +22,20 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     // page d'accueil
     $r->addRoute('GET', '/', IndexController::class . '/index');
-    // Page des posts
-    $r->addRoute('GET', '/register/', RegisterController::class . '/index');
 
-    // Page détail d'un post
+    // Inscription
+    $r->addRoute('POST', '/register/', RegisterController::class . '/index');
+    $r->addRoute('GET', '/register/', RegisterController::class . '/index');
+    
+    // Connexion
+    $r->addRoute('POST', '/login/', LoginController::class . '/index');
     $r->addRoute('GET', '/login/', LoginController::class . '/index');
+
+    // Logout
+    $r->addRoute('GET', '/logout/', LoginController::class . '/logout');
 });
 
-
-
 //
-
-
-
-
 // Fetch method and URI from somewhere
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
