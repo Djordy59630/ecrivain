@@ -34,12 +34,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/login/">Connexion</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/register/">Inscription</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#">{{ session.email }}</a></li>
+                    {% if not session %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                                href="/login/">Connexion</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                                href="/register/">Inscription</a></li>
+                    {% endif %}
+                    {% if session.roles == 'ROLE_ADMIN' %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                                href="#">
+                                    <button class="btn btn-primary">
+                                        Administration
+                                    </button>
+                                </a></li>
+                    {% endif %}
+                     {% if session %}
+                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/logout/"> <button class="btn btn-danger">Déconnexion</button> </a></li>
+                     {% endif %}
                 </ul>
             </div>
         </div>

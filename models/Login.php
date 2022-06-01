@@ -4,7 +4,7 @@ require_once("DbConnect.php");
 
 class Login extends DbConnect {
 
-    public function checkUser($email){
+    public function userLogin($email){
 
         $db = $this->connect();
         $sql = "SELECT * FROM  user WHERE `email` = :email";

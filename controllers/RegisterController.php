@@ -35,6 +35,24 @@ class RegisterController extends BaseController {
 					die("L'adresse email est incorrecte");
 				}
 				// on vérifie si l'adresse email n'existe pas
+
+				$checkUserEmail = new Register();
+				$checkUserEmail = $checkUserEmail->checkUserEmail($_POST["email"]);
+				
+				if($checkUserEmail != false)
+				{
+					die("Cette adresse email est déjà utilisée");
+				}
+
+				// on vérifie si le pseudo n'existe pas
+				$checkUsername = new Register();
+				$checkUsername = $checkUsername->checkUsername($username);
+
+				if($checkUsername != false)
+				{
+					die("Ce pseudo est déjà utilisé");
+				}
+
 				// On hash le mot de passe
 				$password = password_hash($_POST['password'], PASSWORD_ARGON2ID);
 

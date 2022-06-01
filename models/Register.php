@@ -15,4 +15,30 @@ class Register extends DbConnect {
         $query->bindValue(':user_roles', 'ROLE_USER');
         $query->execute();
     }
+
+    public function checkUserEmail($email){
+
+        $db = $this->connect();
+        $sql = "SELECT * FROM  user WHERE `email` = :email";
+        $query = $db->prepare($sql);
+        $query->bindValue(':email', $email);
+        $query->execute();
+        $user =  $query->fetch();
+
+        return $user;
+
+    }
+
+    public function checkUsername($username){
+
+        $db = $this->connect();
+        $sql = "SELECT * FROM  user WHERE `username` = :username";
+        $query = $db->prepare($sql);
+        $query->bindValue(':username', $username);
+        $query->execute();
+        $user =  $query->fetch();
+
+        return $user;
+
+    }
 }

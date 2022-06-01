@@ -29,8 +29,8 @@ class LoginController extends BaseController {
 					die("ce n'est pas un email");
 				}
 				
-				$checkUser = new Login();
-				$user = $checkUser->checkUser($_POST["email"]);
+				$userLogin = new Login();
+				$user = $userLogin->userLogin($_POST["email"]);
 
 
 				// Ici on a un user existant, on peut vérifier le mot de passe
