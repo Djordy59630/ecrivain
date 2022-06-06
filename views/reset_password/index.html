@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Djordy Decroix - connexion</title>
+    <title>Djordy Decroix - Mot de passe oublié</title>
 {% endblock %}
 
 {% block body %}
@@ -9,7 +9,8 @@
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">CONNEXION</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Mot de passe oublié</h2>
+            <p class="text-center">Un email vous sera envoyé afin de réinitialiser votre mot de passe</p>
             <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
@@ -22,15 +23,8 @@
                   <label for="email" class="form-label">Adresse mail</label>
                   <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                 </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Mot de passe</label>
-                  <input type="password" name="password" class="form-control" id="password">
-                </div>
-                <button type="submit" class="btn btn-secondary">Me connecter</button>
+                <button type="submit" class="btn btn-secondary">Réinitialiser</button>
               </form>
-              <a href="/resetpassword/">
-                <p class="text-center">Mot de passe oublié</p>
-              </a>
         </div>
     </section>
 {% endblock %}

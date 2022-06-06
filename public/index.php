@@ -31,6 +31,14 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/login/', LoginController::class . '/index');
     $r->addRoute('GET', '/login/', LoginController::class . '/index');
 
+    // Reset Password
+    $r->addRoute('POST', '/resetpassword/', ResetPasswordController::class . '/index');
+    $r->addRoute('GET', '/resetpassword/', ResetPasswordController::class . '/index');
+
+    // Reset Password new password
+    $r->addRoute('POST', '/resetpasswordIsValid/', ResetPasswordController::class . '/newPassword');
+    $r->addRoute('GET', '/resetpasswordIsValid/', ResetPasswordController::class . '/newPassword');
+
     // Logout
     $r->addRoute('GET', '/logout/', LoginController::class . '/logout');
 });
