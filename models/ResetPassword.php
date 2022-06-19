@@ -7,7 +7,7 @@ class ResetPassword extends DbConnect {
     public function setToken($email, $token){
 
         $db = $this->connect();
-        $sql = "UPDATE user SET `token` = :token WHERE `email` = :email";
+        $sql = "UPDATE user SET `token` = :token, `expireAt` = NOW() WHERE `email` = :email";
         $query = $db->prepare($sql);
         $query->bindValue(':email', $email);
         $query->bindValue(':token', $token);
@@ -21,7 +21,7 @@ class ResetPassword extends DbConnect {
         $sql = "UPDATE user SET `token` = :token WHERE `id` = :id";
         $query = $db->prepare($sql);
         $query->bindValue(':id', $user);
-        $query->bindValue(':token', "");
+        $query->bindValue(':token', "NULL");
         $query->execute();
         $user =  $query->fetch();
     }

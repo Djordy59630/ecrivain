@@ -1,4 +1,7 @@
 <?php
+
+use Carbon\Carbon;
+
 require('../models/ResetPassword.php');
 
 /**
@@ -56,13 +59,17 @@ class ResetPasswordController extends BaseController {
 		
         // Le formulaire a été envoyé 
         // on vérifie le token
-        if(isset($_GET['token']) && !empty($_GET['token']))
+        if(!empty($_GET['token']))
         {
 			$checkUser = new ResetPassword();
 			$user = $checkUser->checkUser($_GET['token']);
 
+			$created = new Carbon($user['expireAt']);
+			$now = Carbon::now();
+			$difference = ($created->diff($now)->days);
+
 			// on vérifie si le formulaire a été envoyé 
-			if(!empty($_POST))
+			if(!empty($_POST) && $difference < 1 )
 			{
 				// On hash le mot de passe
 				$password = password_hash($_POST['password'], PASSWORD_ARGON2ID);

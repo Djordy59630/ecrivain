@@ -21,7 +21,9 @@ require APP_DIRECTORY . 'vendor/autoload.php';
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     // page d'accueil
+    $r->addRoute('POST', '/', IndexController::class . '/contact');
     $r->addRoute('GET', '/', IndexController::class . '/index');
+    
 
     // Inscription
     $r->addRoute('POST', '/register/', RegisterController::class . '/index');
