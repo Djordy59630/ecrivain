@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Djordy Decroix - connexion</title>
+{% endblock %}
+
+{% block body %}
+    <!-- Portfolio Section-->
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Liste des Articles</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+           
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Titre</th>
+                        <th>Chapô</th>
+                        <th>Contenu</th>
+                        <th>Dernière modification</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td><i class="fa-solid fa-pen-to-square"></i> <i class="fa-solid fa-comments"></i> <i class="fa-solid fa-trash"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            <a href="/article/" class="btn btn-primary">Ajouter un article</a>
+
+
+
+
+
+
+             
+        </div>
+    </section>
+{% endblock %}

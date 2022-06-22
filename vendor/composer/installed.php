@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'fc0d47763ed2954af54addbb3b245b951e7ffdb3',
+        'reference' => '52d01d12d9f79c690a97150fcc3377bde147b2e9',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'fc0d47763ed2954af54addbb3b245b951e7ffdb3',
+            'reference' => '52d01d12d9f79c690a97150fcc3377bde147b2e9',
             'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(

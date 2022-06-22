@@ -28,7 +28,16 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // Inscription
     $r->addRoute('POST', '/register/', RegisterController::class . '/index');
     $r->addRoute('GET', '/register/', RegisterController::class . '/index');
+
+    // ajout d'article
+    $r->addRoute('POST', '/article/', ArticleController::class . '/new');
+    $r->addRoute('GET', '/article/', ArticleController::class . '/new');
     
+     // administration
+     
+     $r->addRoute('GET', '/admin/', AdminController::class . '/index');
+
+
     // Connexion
     $r->addRoute('POST', '/login/', LoginController::class . '/index');
     $r->addRoute('GET', '/login/', LoginController::class . '/index');

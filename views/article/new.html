@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Djordy Decroix - connexion</title>
+{% endblock %}
+
+{% block body %}
+    <!-- Portfolio Section-->
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Ajouter un article</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+           
+            <form method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="title" name="title" class="form-control" id="title" aria-describedby="titleHelp">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="chapo" class="form-label">Chapô</label>
+                    <input type="text" name="chapo" class="form-control" id="chapo">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Contenu</label>
+                    <textarea type="text" name="content" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary">Valider</button>
+            </form>
+          
+
+
+
+
+
+
+             
+        </div>
+    </section>
+{% endblock %}
