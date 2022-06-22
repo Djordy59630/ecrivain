@@ -33,6 +33,7 @@ class BaseController {
         if( isset($_SESSION['user']))
         {
             $this->twig->addGlobal('session', $_SESSION['user']);
+            $this->twig->addGlobal('base_url', BASE_URL);
         }
         
     }

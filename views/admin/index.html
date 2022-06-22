@@ -16,10 +16,7 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-           
-
-            
-            
+        
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -32,19 +29,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                    {{ articles|length }}
+
                     {% for article in articles %}
                      <tr>
-                        <td>{{ aritlce.title }}</td>
-                        <td>{{ aritlce.chapo }}</td>
-                        <td>{{ aritlce.content }}</td>
-                        <td>{{ aritlce.updatedAt }}</td>
-                        <td><i class="fa-solid fa-pen-to-square"></i> <i class="fa-solid fa-comments"></i> <i class="fa-solid fa-trash"></i></td>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.chapo }}</td>
+                        <td>{{ article.content }}</td>
+                        <td>{{ article.updatedAt }}</td>
+                        <td><i class="fa-solid fa-pen-to-square"></i> 
+                        <i class="fa-solid fa-comments"></i> 
+                        <i class="fa-solid fa-trash"></i></td>
                       </tr>
                     {% endfor %}
                      
-                       
-                      
+
                     </tbody>
                   </table>
               </div>

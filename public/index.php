@@ -7,6 +7,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
+define('BASE_URL', 'http://mvc/');
 define('APP_DIRECTORY', __DIR__ . '/../');
 
 
@@ -32,7 +33,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // ajout d'article
     $r->addRoute('POST', '/article/', ArticleController::class . '/new');
     $r->addRoute('GET', '/article/', ArticleController::class . '/new');
-    
+
+    // ajout d'article
+    $r->addRoute('POST', '/article/{id}/edit/', ArticleController::class . '/edit');
+    $r->addRoute('GET', '/article/{id}/edit/', ArticleController::class . '/edit');
+
      // administration
      
      $r->addRoute('GET', '/admin/', AdminController::class . '/index');
@@ -87,13 +92,18 @@ switch ($routeInfo[0]) {
         break;
 
     case FastRoute\Dispatcher::FOUND:
+        
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         list($class, $method) = explode("/", $handler, 2);
+
+        // var_dump($vars, $class, $method );
+        // die;
 
         // on appelle automatique notre controlleur, avec la bonne méthode et les bons paramètres donnés à notre fonction
         // Exemple pour la syntaxe "IndexController::class . '/index'", voici ce qui sera appelé : "IndexController->index()"
 
         call_user_func_array(array(new $class, $method), $vars);
+        
         break;
 }
