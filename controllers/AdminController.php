@@ -1,4 +1,5 @@
 <?php
+require('../models/Article.php');
 
 /**
  *
@@ -8,11 +9,15 @@ class AdminController extends BaseController {
 
     public function index()
     {
+
+        $article = new Article();
+		$articles = $article->index();
+
          // on choisi la template à appeler
          $template = $this->twig->load('admin/index.html');
 
          // Puis on affiche la page avec la méthode render
-         echo $template->render([]);
+         echo $template->render(['articles' => $articles]);
         
     }
 

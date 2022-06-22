@@ -10,15 +10,20 @@ class Article extends DbConnect {
         $sql = "SELECT * FROM  article";
         $query = $db->prepare($sql);
         $query->execute();
-        $articles =  $query->fetch();
+        $articles =  $query->fetchAll();
 
         return $articles;
     }
 
-    public function new(){
-
-       
-
+    public function new($title, $chapo, $content){
+        $db = $this->connect();
+        $sql = "INSERT INTO article (`title`,`chapo`, `content` , `slug`, `createdAt`, `updatedAt`) VALUES (:title, :chapo, :content, :slug, NOW(), NOW())";
+        $query = $db->prepare($sql);
+        $query->bindValue(':title', $title);
+        $query->bindValue(':chapo', $chapo);
+        $query->bindValue(':content', $content);
+        $query->bindValue(':slug', 'test');
+        $query->execute();
     }
 
     public function edit(){
