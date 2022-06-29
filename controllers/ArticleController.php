@@ -1,6 +1,7 @@
 <?php
 
 require('../models/Article.php');
+
 use Cocur\Slugify\Slugify;
 
 
@@ -22,7 +23,6 @@ class ArticleController extends BaseController {
 			!empty($_POST["title"]) && !empty($_POST["chapo"]) && !empty($_POST["content"])
 			)
             {
-
                 $slugify = new Slugify();
                 $titleSlug = $slugify->slugify($_POST["title"]); // hello-world
                
@@ -30,6 +30,8 @@ class ArticleController extends BaseController {
                 $article = new Article();
 				$article->new($_POST["title"], $_POST["chapo"], $_POST["content"], $titleSlug);
 
+
+                header('Location: /admin/');
             }
         }
 
