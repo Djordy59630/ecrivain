@@ -1,4 +1,5 @@
 <?php
+require('../models/Article.php');
 
 /**
  * 
@@ -9,11 +10,14 @@ class IndexController extends BaseController {
 	// Page d'accueil
 	public function index() {
 
+		$article = new Article();
+		$articles = $article->index();
+
         // on choisi la template à appeler
         $template = $this->twig->load('index/index.html');
 
         // Puis on affiche la page avec la méthode render
-		echo $template->render([]);
+		echo $template->render(['articles' => $articles]);
 	}
 
 	// Page d'accueil

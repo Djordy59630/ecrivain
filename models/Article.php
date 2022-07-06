@@ -37,29 +37,34 @@ class Article extends DbConnect {
         $user =  $query->fetch();
     }
 
-    public function edit(){
-
-       
-
-    }
-
-    public function show($id){
+    public function edit($title, $chapo, $content, $slug, $id){
 
         $db = $this->connect();
-        $sql = "SELECT * FROM article WHERE `id` = :id";
+        $sql = "UPDATE article SET `title` =  :title, `chapo` = :chapo, `content` = :content, `slug` = :slug WHERE `id` = $id";
         $query = $db->prepare($sql);
-        $query->bindValue(':id', $id);
+        $query->bindValue(':title', $title);
+        $query->bindValue(':chapo', $chapo);
+        $query->bindValue(':content', $content);
+        $query->bindValue(':slug', $id . '-' .$slug);
         $query->execute();
-        $article =  $query->fetch();
-
-        return $article;
-
     }
 
-    public function delete(){
+    public function show($slug){
 
         $db = $this->connect();
-        $sql = "DELETE * FROM article WHERE `id` = :id";
+        $sql = "SELECT * FROM article WHERE `slug` = :slug";
+        $query = $db->prepare($sql);
+        $query->bindValue(':slug', $slug);
+        $query->execute();
+        
+        $article =  $query->fetch();
+        return $article;
+    }
+
+    public function delete($id){
+
+        $db = $this->connect();
+        $sql = "DELETE FROM article WHERE `id` = :id";
         $query = $db->prepare($sql);
         $query->bindValue(':id', $id);
         $query->execute();

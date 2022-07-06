@@ -32,13 +32,16 @@
 
                     {% for article in articles %}
                      <tr>
-                        <td>{{ article.title }}</td>
-                        <td>{{ article.chapo }}</td>
-                        <td>{{ article.content }}</td>
+                        <td>{{ article.title|slice(0, 20) }}</td>
+                        <td>{{ article.chapo|slice(0, 20) }}</td>
+                        <td>{{ article.content|slice(0, 50) }} ...</td>
                         <td>{{ article.updatedAt }}</td>
-                        <td><i class="fa-solid fa-pen-to-square"></i> 
+                        <td>
+                        <a href="/article/{{ article.slug }}/"><i class="fa-solid fa-eye"></i></a>
+                        <a href="/article/{{ article.slug }}/edit/"><i class="fa-solid fa-pen-to-square"></i></a>                        
                         <i class="fa-solid fa-comments"></i> 
-                        <i class="fa-solid fa-trash"></i></td>
+                         <a href="/article/{{ article.id }}/delete/"><i class="fa-solid fa-trash"></i></a>       
+                         </td>
                       </tr>
                     {% endfor %}
                      
