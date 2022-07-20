@@ -10,22 +10,18 @@ class CommentController extends BaseController {
     public function new()
     {
 
-        if(!empty($_POST))
+        $request = $this->httpRequest->request;
+
+        if(!empty($request))
 		{
-           
             // Le formulaire a été envoyé
 			// on vérifie que TOUS les champs sont remplis
-			if( isset($_POST["comment"], $_POST["article"]) &&  
-			!empty($_POST["comment"])&&  
-			!empty($_POST["article"])
-			)
+			if(!empty($request->get("comment")) &&  !empty($request->get("article")))
             {
-               
                 $user = $_SESSION["user"]["id"];
 
                 $comment = new Comment();
-				$comment->new($user, $_POST["comment"], $_POST["article"]);
-
+				$comment->new($user, $request->get("comment"), $request->get("article"));
 
                 header('Location: /');
             }

@@ -14,22 +14,20 @@ class ArticleController extends BaseController {
 
     public function new()
     {
+        $request = $this->httpRequest->request;
 
-        if(!empty($_POST))
+        if(!empty($request))
 		{
 			// Le formulaire a été envoyé
 			// on vérifie que TOUS les champs sont remplis
-			if( isset($_POST["title"], $_POST["chapo"], $_POST["content"]) &&  
-			!empty($_POST["title"]) && !empty($_POST["chapo"]) && !empty($_POST["content"])
+			if( !empty($request->get("title")) && !empty($request->get("chapo")) && !empty($request->get("content"))
 			)
             {
                 $slugify = new Slugify();
-                $titleSlug = $slugify->slugify($_POST["title"]); // hello-world
+                $titleSlug = $slugify->slugify($request->get("title")); // hello-world
                
-
                 $article = new Article();
-				$article->new($_POST["title"], $_POST["chapo"], $_POST["content"], $titleSlug);
-
+				$article->new($request->get("title"), $request->get("chapo"), $request->get("content"), $titleSlug);
 
                 header('Location: /admin/');
             }
@@ -49,23 +47,23 @@ class ArticleController extends BaseController {
         $article = new Article();
         $currentArticle = $article->show($slug);
 
-
         // var_dump($article['id']);
         // die;
 
-        if(!empty($_POST))
+        $request = $this->httpRequest->request;
+
+        if(!empty($request))
 		{
 			// Le formulaire a été envoyé
 			// on vérifie que TOUS les champs sont remplis
-			if( isset($_POST["title"], $_POST["chapo"], $_POST["content"]) &&  
-			!empty($_POST["title"]) && !empty($_POST["chapo"]) && !empty($_POST["content"])
+			if( !empty($request->get("title")) && !empty($request->get("chapo")) && !empty($request->get("content"))
 			)
             {
                 $slugify = new Slugify();
-                $titleSlug = $slugify->slugify($_POST["title"]); // hello-world
+                $titleSlug = $slugify->slugify($request->get("title")); // hello-world
                
                 $article = new Article();
-				$article->edit($_POST["title"], $_POST["chapo"], $_POST["content"], $titleSlug, $currentArticle['id']);
+				$article->edit($request->get("title"), $request->get("chapo"), $request->get("content"), $titleSlug, $currentArticle['id']);
                 
                 header('Location: /admin/');
             }

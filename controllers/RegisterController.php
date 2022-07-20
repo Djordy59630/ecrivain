@@ -16,28 +16,32 @@ class RegisterController extends BaseController {
 	// Index Page d'inscription
 	public function index($params=array()) {
 		
+		
+		$request = $this->httpRequest->request;
+
+	
 		// on vérifie si le formulaire a été envoyé 
-		if(!empty($_POST))
+		if( $this->httpRequest->isMethod('POST'))
 		{
+			
 			// Le formulaire a été envoyé
 			// on vérifie que TOUS les champs sont remplis
-			if( isset($_POST["email"], $_POST["username"], $_POST["password"]) &&  
-			!empty($_POST["email"]) && !empty($_POST["username"]) && !empty($_POST["password"])
+			if(  !empty($request->get("email")) && !empty($request->get("username")) && !empty($request->get("password"))
 			)
 			{
 				// Le Formulaire est complet
 				// On récupère les données en les protégeant 
-				$username = strip_tags($_POST["username"]);
+				$username = strip_tags($request->get("username"));
 				// username unique
 				
 				// on vérifie l'adresse email
-				if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+				if(!filter_var($request->get("email"), FILTER_VALIDATE_EMAIL)){
 					die("L'adresse email est incorrecte");
 				}
 				// on vérifie si l'adresse email n'existe pas
 
 				$checkUserEmail = new Register();
-				$checkUserEmail = $checkUserEmail->checkUserEmail($_POST["email"]);
+				$checkUserEmail = $checkUserEmail->checkUserEmail($request->get("email"));
 				
 				if($checkUserEmail != false)
 				{
@@ -54,10 +58,10 @@ class RegisterController extends BaseController {
 				}
 
 				// On hash le mot de passe
-				$password = password_hash($_POST['password'], PASSWORD_ARGON2ID);
+				$password = password_hash($request->get("password"), PASSWORD_ARGON2ID);
 
 				$register = new Register();
-				$register->addUser($_POST["email"], $_POST["username"], $password);
+				$register->addUser($request->get("email"), $request->get("username"), $password);
 
 				
 				// on connecte l'utilisateur
@@ -66,7 +70,7 @@ class RegisterController extends BaseController {
 				//e on stocke dans $_session les information de l'utilisateur
 				$_SESSION["user"] = [
 					"username" => $username,
-					"email" => $_POST["email"],
+					"email" => $request->get("email"),
 					"roles" => ["ROLE_USER"],
 				];
 
