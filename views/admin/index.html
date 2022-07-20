@@ -37,11 +37,11 @@
                         <td>{{ article.content|slice(0, 50) }} ...</td>
                         <td>{{ article.updatedAt }}</td>
                         <td>
-                        <a href="/article/{{ article.slug }}/"><i class="fa-solid fa-eye"></i></a>
-                        <a href="/article/{{ article.slug }}/edit/"><i class="fa-solid fa-pen-to-square"></i></a>                        
-                        <i class="fa-solid fa-comments"></i> 
-                         <a href="/article/{{ article.id }}/delete/"><i class="fa-solid fa-trash"></i></a>       
-                         </td>
+                          <a href="/article/{{ article.slug }}/"><i class="fa-solid fa-eye"></i></a>
+                          <a href="/article/{{ article.slug }}/edit/"><i class="fa-solid fa-pen-to-square"></i></a>                        
+                          <a href="/comment/{{ article.id }}/"><i class="fa-solid fa-comments"></i></a>
+                          <a href="/article/{{ article.id }}/delete/"><i class="fa-solid fa-trash"></i></a>       
+                        </td>
                       </tr>
                     {% endfor %}
                      

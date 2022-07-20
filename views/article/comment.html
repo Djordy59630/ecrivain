@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Djordy Decroix - connexion</title>
+{% endblock %}
+
+{% block body %}
+<!-- Portfolio Section-->
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h4 class="page-section-heading text-center text-uppercase text-secondary mb-0">commentaires non validés</h4>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Commentaires non validés</th>
+                        <th>Supprimer</th>
+                        <th>Valider</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commentIsNotValid in commentsIsNotValid %}
+                    <tr>
+                        <td>{{ commentIsNotValid.content }}</td>
+                        <td>
+                            <a href="/comment/{{ commentIsNotValid.id }}/delete/{{ commentIsNotValid.article_Id }}"><i class="fa-solid fa-circle-xmark"></i></a>
+                        </td>
+                        <td>
+                            <a href="/comment/{{ commentIsNotValid.id }}/valid/{{ commentIsNotValid.article_Id }}"><i class="fa-solid fa-check"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="my-5"></div>
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Commentaires Validés</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Commentaires non validés</th>
+                        <th>Supprimer</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commentIsValid in commentsIsValid %}
+                    <tr>
+                        <td>{{ commentIsValid.content }}</td>
+                        <td>
+                            <a href="/comment/{{ commentIsValid.id }}/delete/{{ commentIsValid.article_Id }}"><i class="fa-solid fa-circle-xmark"></i></a>
+                        </td>
+                      
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

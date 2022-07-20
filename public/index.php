@@ -34,12 +34,12 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/article/', ArticleController::class . '/new');
 
      // delete d'article
-     $r->addRoute('POST', '/article/{id}/delete/', ArticleController::class . '/delete');
-     $r->addRoute('GET', '/article/{id}/delete/', ArticleController::class . '/delete');
+    $r->addRoute('POST', '/article/{id}/delete/', ArticleController::class . '/delete');
+    $r->addRoute('GET', '/article/{id}/delete/', ArticleController::class . '/delete');
 
       // show d'article
-      $r->addRoute('POST', '/article/{slug}/', ArticleController::class . '/show');
-      $r->addRoute('GET', '/article/{slug}/', ArticleController::class . '/show');
+    $r->addRoute('POST', '/article/{slug}/', ArticleController::class . '/show');
+    $r->addRoute('GET', '/article/{slug}/', ArticleController::class . '/show');
 
     // edit d'article
     $r->addRoute('POST', '/article/{slug}/edit/', ArticleController::class . '/edit');
@@ -47,11 +47,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     
 
      // ajout d'article
-     $r->addRoute('POST', '/comment/new', CommentController::class . '/new');
-     $r->addRoute('GET', '/comment/new', CommentController::class . '/new');
+    $r->addRoute('POST', '/comment/new', CommentController::class . '/new');
+    $r->addRoute('GET', '/comment/new', CommentController::class . '/new');
+   
+    $r->addRoute('GET', '/comment/{id}/', CommentController::class . '/management');
+
+    $r->addRoute('GET', '/comment/{commentId}/delete/{articleId}', CommentController::class . '/delete');
+
+    $r->addRoute('GET', '/comment/{commentId}/valid/{articleId}', CommentController::class . '/valid');
+
 
      // administration
-     $r->addRoute('GET', '/admin/', AdminController::class . '/index');
+    $r->addRoute('GET', '/admin/', AdminController::class . '/index');
 
 
     // Connexion

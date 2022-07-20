@@ -67,12 +67,12 @@ class RegisterController extends BaseController {
 				// on connecte l'utilisateur
 				session_start();
 
-				//e on stocke dans $_session les information de l'utilisateur
-				$_SESSION["user"] = [
+				// on stocke dans $_session les information de l'utilisateur
+				$this->httpSession->set('user', [
 					"username" => $username,
 					"email" => $request->get("email"),
 					"roles" => ["ROLE_USER"],
-				];
+				]);
 
 				header('Location: /'); 
 
