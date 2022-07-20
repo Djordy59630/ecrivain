@@ -5,6 +5,7 @@
     "phpmailer/phpmailer": "^6.5",
     "nesbot/carbon": "^2.58",
     "cocur/slugify": "^4.1",
-    "symfony/http-foundation": "^6.0"
+    "symfony/http-foundation": "^6.0",
+    "voku/anti-xss": "^4.1"
   }
 }

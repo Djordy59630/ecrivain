@@ -28,6 +28,8 @@ class ResetPasswordController extends BaseController {
 			// on vérifie que TOUS les champs sont remplis
 			if(!empty($request->get("email")))
 			{
+				$emailVerify = $this->antiXss->xss_clean($request->get("email"));
+				
 				$token = uniqid();
                 $url = "http://mvc/resetpasswordIsValid/?token=$token";
                 
@@ -35,14 +37,14 @@ class ResetPasswordController extends BaseController {
                 $headers = 'content-type: text/plain; charset="utf-8"'." ";
 
                 // on vérifie l'adresse email
-				if(!filter_var($request->get("email"), FILTER_VALIDATE_EMAIL)){
+				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
 					die("L'adresse email est incorrecte");
 				}
 
-                if(mail($request->get("email"), 'Mot de passe oublié', $message, $headers))
+                if(mail($emailVerify, 'Mot de passe oublié', $message, $headers))
                 {
                     $resetPassword = new ResetPassword();
-				    $resetPassword = $resetPassword->setToken($request->get("email"), $token);
+				    $resetPassword = $resetPassword->setToken($emailVerify, $token);
                 }
                 else
                 {
@@ -58,23 +60,32 @@ class ResetPasswordController extends BaseController {
 
     // Index Page d'inscription
 	public function newPassword($params=array()) {
+
+		$requestQuery = $this->httpRequest->query;
+		$request = $this->httpRequest->request;
 		
         // Le formulaire a été envoyé 
         // on vérifie le token
-        if(!empty($_GET['token']))
+        if(!empty($requestQuery->get("token")))
         {
+
+			$token = $this->antiXss->xss_clean($request->get("token"));
+
 			$checkUser = new ResetPassword();
-			$user = $checkUser->checkUser($_GET['token']);
+			$user = $checkUser->checkUser($token);
 
 			$created = new Carbon($user['expireAt']);
 			$now = Carbon::now();
 			$difference = ($created->diff($now)->days);
 
 			// on vérifie si le formulaire a été envoyé 
-			if(!empty($_POST) && $difference < 1 )
+			if(!empty($request) && $difference < 1 && !empty($request->get('password')))
 			{
+				
+				$password = $this->antiXss->xss_clean($request->get("password"));
+
 				// On hash le mot de passe
-				$password = password_hash($_POST['password'], PASSWORD_ARGON2ID);
+				$password = password_hash($password, PASSWORD_ARGON2ID);
 
 				$updatePassword = new ResetPassword();
 				$updatePassword->updatePassword($password, $user['id']);

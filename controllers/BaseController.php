@@ -1,6 +1,7 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use voku\helper\AntiXSS;
 
 /**
  *
@@ -40,6 +41,8 @@ class BaseController {
         
         $this->httpRequest = Request::createFromGlobals();
         $this->httpSession = new Session();
+        $this->antiXss = new AntiXSS();
+
         
         $this->httpSession->start();
 
@@ -47,6 +50,21 @@ class BaseController {
         {
             $this->twig->addGlobal('session', $this->httpSession->get('user'));
         }
+       
+
     }
 
+    protected function checkUserRoles()
+    {
+        if( !empty( $this->httpSession->get('user')))
+        {
+            $user = $this->httpSession->get('user');
+
+            if($user['roles'] !== "ROLE_ADMIN")
+            {
+                header('Location: /');
+            }
+        }
+
+    }
 }

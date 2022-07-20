@@ -14,6 +14,8 @@ class ArticleController extends BaseController {
 
     public function new()
     {
+        $this->checkUserRoles();
+
         $request = $this->httpRequest->request;
 
         if(!empty($request))
@@ -23,11 +25,15 @@ class ArticleController extends BaseController {
 			if( !empty($request->get("title")) && !empty($request->get("chapo")) && !empty($request->get("content"))
 			)
             {
+                $title = $this->antiXss->xss_clean($request->get("title"));
+                $chapo = $this->antiXss->xss_clean($request->get("chapo"));
+                $content = $this->antiXss->xss_clean($request->get("content"));
+
                 $slugify = new Slugify();
-                $titleSlug = $slugify->slugify($request->get("title")); // hello-world
+                $titleSlug = $slugify->slugify($title);
                
                 $article = new Article();
-				$article->new($request->get("title"), $request->get("chapo"), $request->get("content"), $titleSlug);
+				$article->new($title, $chapo, $content, $titleSlug);
 
                 header('Location: /admin/');
             }
@@ -38,17 +44,15 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          echo $template->render([]);
-        
     }
 
     public function edit($slug)
     {
 
+        $this->checkUserRoles();
+
         $article = new Article();
         $currentArticle = $article->show($slug);
-
-        // var_dump($article['id']);
-        // die;
 
         $request = $this->httpRequest->request;
 
@@ -59,11 +63,16 @@ class ArticleController extends BaseController {
 			if( !empty($request->get("title")) && !empty($request->get("chapo")) && !empty($request->get("content"))
 			)
             {
+
+                $title = $this->antiXss->xss_clean($request->get("title"));
+                $chapo = $this->antiXss->xss_clean($request->get("chapo"));
+                $content = $this->antiXss->xss_clean($request->get("content"));
+
                 $slugify = new Slugify();
-                $titleSlug = $slugify->slugify($request->get("title")); // hello-world
+                $titleSlug = $slugify->slugify($title);
                
                 $article = new Article();
-				$article->edit($request->get("title"), $request->get("chapo"), $request->get("content"), $titleSlug, $currentArticle['id']);
+				$article->edit($title, $chapo, $content, $titleSlug, $currentArticle['id']);
                 
                 header('Location: /admin/');
             }
@@ -79,18 +88,19 @@ class ArticleController extends BaseController {
 
     public function delete($id)
     {
+        $this->checkUserRoles();
 
         $article = new Article();
         $article = $article->delete($id);
-
          // on choisi la template à appeler
          header('Location: /admin/');;
-        
     }
 
     public function show($slug)
     {
 
+        $this->checkUserRoles();
+        
         $article = new Article();
         $article = $article->show($slug);
 

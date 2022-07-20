@@ -29,20 +29,22 @@ class IndexController extends BaseController {
 		// on vérifie si le formulaire a été envoyé 
 		if(!empty($request))
 		{
-	
 			if(empty($request->get("email")) && !empty($request->get("username")) && !empty($request->get("message")) )
 			{
 				
+				$email = $this->antiXss->xss_clean($request->get("email"));
+				$username = $this->antiXss->xss_clean($request->get("username"));
+				$message = $this->antiXss->xss_clean($request->get("message"));
+
 				// on vérifie l'adresse email
-				if(!filter_var($request->get("email"), FILTER_VALIDATE_EMAIL)){
+				if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 					die("L'adresse email est incorrecte");
 				}
 
-				$message = $request->get("message") . " Adresse mail de l'expéditeur : " . $request->get("email");
+				$message = $message . " Adresse mail de l'expéditeur : " . $email;
 				$headers = 'content-type: text/plain; charset="utf-8"'." ";
-			
 
-				if(mail('dev@artsetco.com', $request->get("username") . ' vous a envoyé un message', $message, $headers))
+				if(mail('dev@artsetco.com', $username . ' vous a envoyé un message', $message, $headers))
                 {
 					die('mail envoyé');
                 }
@@ -50,11 +52,7 @@ class IndexController extends BaseController {
                 {
                     die('Une erreur est survenue"');
                 }
-
 			}
-		
-		}
-			
+		}	
 	}
-
 }

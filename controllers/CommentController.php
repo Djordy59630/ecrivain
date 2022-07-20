@@ -9,9 +9,7 @@ class CommentController extends BaseController {
 
     public function new()
     {
-
         $request = $this->httpRequest->request;
-
         if(!empty($request))
 		{
             // Le formulaire a été envoyé
@@ -19,10 +17,12 @@ class CommentController extends BaseController {
 			if(!empty($request->get("comment")) &&  !empty($request->get("article")))
             {
               
+                $commentVerify = $this->antiXss->xss_clean($request->get("comment"));
+
                 $user = $this->httpSession->get('user')['id'];
 
                 $comment = new Comment();
-				$comment->new($user, $request->get("comment"), $request->get("article"));
+				$comment->new($user, $commentVerify, $request->get("article"));
 
                 header('Location: /');
             }
@@ -31,6 +31,7 @@ class CommentController extends BaseController {
 
     public function management($id)
     {
+        $this->checkUserRoles();
 
         $commentsIsValid = new Comment();
         $commentsIsValid = $commentsIsValid->show($id);
@@ -38,9 +39,6 @@ class CommentController extends BaseController {
         $commentsIsNotValid = new Comment();
         $commentsIsNotValid = $commentsIsNotValid->commentIsNotValid($id);
 
-        
-        // var_dump($commentsIsNotValid);
-        // die;
          // on choisi la template à appeler
          $template = $this->twig->load('article/comment.html');
 
@@ -50,6 +48,9 @@ class CommentController extends BaseController {
 
     public function delete($commentId, $articleId)
     {
+
+        $this->checkUserRoles();
+
         $comment = new Comment();
         $comment = $comment->delete($commentId);
 
@@ -59,6 +60,9 @@ class CommentController extends BaseController {
 
     public function valid($commentId, $articleId)
     {
+
+        $this->checkUserRoles();
+        
         $comment = new Comment();
         $comment = $comment->valid($commentId);
 

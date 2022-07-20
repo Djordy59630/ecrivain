@@ -27,15 +27,16 @@ class LoginController extends BaseController {
 			if(!empty($request->get("email")) && !empty($request->get("password")))
 			{
 
-				
+				$emailVerify = $this->antiXss->xss_clean($request->get("email"));
+				$passwordVerify = $this->antiXss->xss_clean($request->get("password"));
 
 				// on vérifie que l'email en est un
-				if(!filter_var($request->get("email"), FILTER_VALIDATE_EMAIL)){
-					die("ce n'est pas un email");
+				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
+					header('Location: /message/Ceci n\'est pas un mail'); 
 				}
 				
 				$userLogin = new Login();
-				$user = $userLogin->userLogin($request->get("email"));
+				$user = $userLogin->userLogin($emailVerify);
 
 			
 				// Ici on a un user existant, on peut vérifier le mot de passe

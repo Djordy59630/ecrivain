@@ -29,19 +29,22 @@ class RegisterController extends BaseController {
 			if(  !empty($request->get("email")) && !empty($request->get("username")) && !empty($request->get("password"))
 			)
 			{
-				// Le Formulaire est complet
-				// On récupère les données en les protégeant 
-				$username = strip_tags($request->get("username"));
+
+				$usernameVerify = $this->antiXss->xss_clean($request->get("username"));
+				$emailVerify = $this->antiXss->xss_clean($request->get("email"));
+				$passwordVerify = $this->antiXss->xss_clean($request->get("password"));
+				
+				
 				// username unique
 				
 				// on vérifie l'adresse email
-				if(!filter_var($request->get("email"), FILTER_VALIDATE_EMAIL)){
+				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
 					die("L'adresse email est incorrecte");
 				}
 				// on vérifie si l'adresse email n'existe pas
 
 				$checkUserEmail = new Register();
-				$checkUserEmail = $checkUserEmail->checkUserEmail($request->get("email"));
+				$checkUserEmail = $checkUserEmail->checkUserEmail($emailVerify);
 				
 				if($checkUserEmail != false)
 				{
@@ -50,7 +53,7 @@ class RegisterController extends BaseController {
 
 				// on vérifie si le pseudo n'existe pas
 				$checkUsername = new Register();
-				$checkUsername = $checkUsername->checkUsername($username);
+				$checkUsername = $checkUsername->checkUsername($usernameVerify);
 
 				if($checkUsername != false)
 				{
@@ -58,10 +61,10 @@ class RegisterController extends BaseController {
 				}
 
 				// On hash le mot de passe
-				$password = password_hash($request->get("password"), PASSWORD_ARGON2ID);
+				$password = password_hash($passwordVerify, PASSWORD_ARGON2ID);
 
 				$register = new Register();
-				$register->addUser($request->get("email"), $request->get("username"), $password);
+				$register->addUser($emailVerify, $usernameVerify, $password);
 
 				
 				// on connecte l'utilisateur
@@ -69,8 +72,8 @@ class RegisterController extends BaseController {
 
 				// on stocke dans $_session les information de l'utilisateur
 				$this->httpSession->set('user', [
-					"username" => $username,
-					"email" => $request->get("email"),
+					"username" => $usernameVerify,
+					"email" => $emailVerify,
 					"roles" => ["ROLE_USER"],
 				]);
 

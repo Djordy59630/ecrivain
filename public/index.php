@@ -24,7 +24,6 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/', IndexController::class . '/contact');
     $r->addRoute('GET', '/', IndexController::class . '/index');
     
-
     // Inscription
     $r->addRoute('POST', '/register/', RegisterController::class . '/index');
     $r->addRoute('GET', '/register/', RegisterController::class . '/index');
@@ -55,6 +54,13 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/comment/{commentId}/delete/{articleId}', CommentController::class . '/delete');
 
     $r->addRoute('GET', '/comment/{commentId}/valid/{articleId}', CommentController::class . '/valid');
+
+    $r->addRoute('GET', '/message/{message}', ErrorController::class . '/message');
+
+
+
+    $r->addRoute('GET', '/500', CommentController::class . '/valid');
+
 
 
      // administration
@@ -97,9 +103,13 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
 
+        $class = ErrorController::class;
+        $method = 'index';
+        $vars = [];
+
         // ... 404 Not Found
         // Todo : definir une page d'erreur
-        echo 'PAGE NOT FOUND';
+        call_user_func_array(array(new $class, $method), $vars);
         break;
     
 

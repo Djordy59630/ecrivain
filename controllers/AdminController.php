@@ -10,6 +10,7 @@ class AdminController extends BaseController {
     public function index()
     {
 
+        $this->checkUserRoles();
         
         $article = new Article();
 		$articles = $article->index();
