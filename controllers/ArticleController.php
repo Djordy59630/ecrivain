@@ -36,7 +36,7 @@ class ArticleController extends BaseController {
 				$article->new($title, $chapo, $content, $titleSlug);
 
                 header('Location: /admin/');
-                exit;
+                die;
             }
         }
 
@@ -45,7 +45,7 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render([]);
-         print_r ( $render );
+         print ( $render );
          
     }
 
@@ -78,7 +78,7 @@ class ArticleController extends BaseController {
 				$article->edit($title, $chapo, $content, $titleSlug, $currentArticle['id']);
                 
                 header('Location: /admin/');
-                exit;
+                die;
             }
         }
          // on choisi la template à appeler
@@ -86,7 +86,7 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render(['article' => $currentArticle]);
-         print_r ( $render );
+         print ( $render );
         
     }
 
@@ -99,7 +99,7 @@ class ArticleController extends BaseController {
         $article = $article->delete($id);
          // on choisi la template à appeler
          header('Location: /admin/');
-         exit;
+         die;
     }
 
     public function show($slug)
@@ -118,7 +118,7 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render(['article' => $article, 'comments' => $comments]);
-         print_r ( $render );
+         print ( $render );
         
     }
 

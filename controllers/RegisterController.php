@@ -40,7 +40,7 @@ class RegisterController extends BaseController {
 				// on vérifie l'adresse email
 				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
 					header('Location: /message/L\'adresse email est incorrecte'); 
-					exit;
+					die;
 					
 				}
 				// on vérifie si l'adresse email n'existe pas
@@ -51,7 +51,7 @@ class RegisterController extends BaseController {
 				if($checkUserEmail != false)
 				{
 					header('Location: /message/Cette adresse email est déjà utilisée'); 
-					exit;
+					die;
 				}
 
 				// on vérifie si le pseudo n'existe pas
@@ -61,7 +61,7 @@ class RegisterController extends BaseController {
 				if($checkUsername != false)
 				{
 					header('Location: /message/Ce pseudo est déjà utilisé'); 
-					exit;
+					die;
 				}
 
 				// On hash le mot de passe
@@ -82,18 +82,18 @@ class RegisterController extends BaseController {
 				]);
 
 				header('Location: /'); 
-				exit;
+				die;
 
 			}else{
 				// Le formulaire n'est pas complet
 				header('Location: /message/Le Formulaire est imcomplet'); 
-				exit;
+				die;
 			}
 		}
 	
 		$template = $this->twig->load('register/index.html');
 		$render = $template->render([]);
-		print_r ( $render );
+		print ( $render );
 	}
 
 

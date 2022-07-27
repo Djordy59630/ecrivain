@@ -25,7 +25,7 @@ class CommentController extends BaseController {
 				$comment->new($user, $commentVerify, $request->get("article"));
 
                 header('Location: /');
-                exit;
+                die;
             }
         }
     }
@@ -45,7 +45,7 @@ class CommentController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render(['commentsIsValid' => $commentsIsValid, 'commentsIsNotValid' => $commentsIsNotValid]);
-         print_r ( $render );
+         print ( $render );
     }
 
     public function delete($commentId, $articleId)
@@ -58,7 +58,7 @@ class CommentController extends BaseController {
 
          // on choisi la template à appeler
          header('Location: /comment/' . $articleId . '/');
-         exit;
+         die;
     }
 
     public function valid($commentId, $articleId)
@@ -71,6 +71,6 @@ class CommentController extends BaseController {
 
          // on choisi la template à appeler
          header('Location: /comment/' . $articleId . '/');
-         exit;
+         die;
     }
 }

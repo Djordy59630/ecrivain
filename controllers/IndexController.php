@@ -18,7 +18,7 @@ class IndexController extends BaseController {
 
         // Puis on affiche la page avec la méthode render
 		$render = $template->render(['articles' => $articles]);
-		print_r ( $render );
+		print ( $render );
 
 		
 	}
@@ -42,7 +42,7 @@ class IndexController extends BaseController {
 				// on vérifie l'adresse email
 				if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 					header('Location: /message/L\'adresse email est incorrecte'); 
-					exit;
+					die;
 					
 				}
 
@@ -52,12 +52,12 @@ class IndexController extends BaseController {
 				if(mail('dev@artsetco.com', $username . ' vous a envoyé un message', $message, $headers))
                 {
 					header('Location: /message/mail envoyé'); 
-					exit;
+					die;
                 }
                 else
                 {
 					header('Location: /message/Une erreur est survenue'); 
-					exit;
+					die;
                 }
 			}
 		}	

@@ -39,7 +39,7 @@ class ResetPasswordController extends BaseController {
                 // on vérifie l'adresse email
 				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
 					header('Location: /message/L\'adresse email est incorrecte'); 
-					exit;
+					die;
 				}
 
                 if(mail($emailVerify, 'Mot de passe oublié', $message, $headers))
@@ -50,7 +50,7 @@ class ResetPasswordController extends BaseController {
                 else
                 {
 					header('Location: /message/Une erreur est survenue'); 
-					exit;
+					die;
                 }
                 
 			}
@@ -59,7 +59,7 @@ class ResetPasswordController extends BaseController {
 		$template = $this->twig->load('reset_password/index.html');
 
 		$render = $template->render([]);
-		print_r ( $render );
+		print ( $render );
 		
 	}
 
@@ -99,14 +99,14 @@ class ResetPasswordController extends BaseController {
 				$deleteToken->deleteToken($user['id']);
 
 				header('Location: /'); 
-				exit;
+				die;
 			}
 
 			if($user)
 			{
 				$template = $this->twig->load('reset_password/new_password.html');
 				$render = $template->render([]);
-				print_r ( $render );
+				print ( $render );
 			}
            
 			
