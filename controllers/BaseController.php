@@ -63,6 +63,7 @@ class BaseController {
             if($user['roles'] !== "ROLE_ADMIN")
             {
                 header('Location: /');
+                exit;
             }
         }
 

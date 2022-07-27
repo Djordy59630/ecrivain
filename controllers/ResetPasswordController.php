@@ -39,6 +39,7 @@ class ResetPasswordController extends BaseController {
                 // on vérifie l'adresse email
 				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
 					header('Location: /message/L\'adresse email est incorrecte'); 
+					exit;
 				}
 
                 if(mail($emailVerify, 'Mot de passe oublié', $message, $headers))
@@ -49,6 +50,7 @@ class ResetPasswordController extends BaseController {
                 else
                 {
 					header('Location: /message/Une erreur est survenue'); 
+					exit;
                 }
                 
 			}
@@ -97,6 +99,7 @@ class ResetPasswordController extends BaseController {
 				$deleteToken->deleteToken($user['id']);
 
 				header('Location: /'); 
+				exit;
 			}
 
 			if($user)

@@ -25,6 +25,7 @@ class CommentController extends BaseController {
 				$comment->new($user, $commentVerify, $request->get("article"));
 
                 header('Location: /');
+                exit;
             }
         }
     }
@@ -56,7 +57,8 @@ class CommentController extends BaseController {
         $comment = $comment->delete($commentId);
 
          // on choisi la template à appeler
-         header('Location: /comment/' . $articleId . '/');;
+         header('Location: /comment/' . $articleId . '/');
+         exit;
     }
 
     public function valid($commentId, $articleId)
@@ -68,6 +70,7 @@ class CommentController extends BaseController {
         $comment = $comment->valid($commentId);
 
          // on choisi la template à appeler
-         header('Location: /comment/' . $articleId . '/');;
+         header('Location: /comment/' . $articleId . '/');
+         exit;
     }
 }
