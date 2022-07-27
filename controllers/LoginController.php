@@ -39,11 +39,14 @@ class LoginController extends BaseController {
 				$user = $userLogin->userLogin($emailVerify);
 
 			
+
+
 				// Ici on a un user existant, on peut vérifier le mot de passe
 				if(!$user || !password_verify($request->get("password"), $user["pwd"]) ){
 					header('Location: /message/L\'utilisateur et/ou le mot de passe est incorrect'); 
 				}
 
+			
 				// L'utilisateur est le mot de passe sont corrects
 				
 	
