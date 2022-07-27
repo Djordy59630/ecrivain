@@ -39,7 +39,8 @@ class RegisterController extends BaseController {
 				
 				// on vérifie l'adresse email
 				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
-					die("L'adresse email est incorrecte");
+					header('Location: /message/L\'adresse email est incorrecte'); 
+					
 				}
 				// on vérifie si l'adresse email n'existe pas
 
@@ -48,7 +49,7 @@ class RegisterController extends BaseController {
 				
 				if($checkUserEmail != false)
 				{
-					die("Cette adresse email est déjà utilisée");
+					header('Location: /message/Cette adresse email est déjà utilisée'); 
 				}
 
 				// on vérifie si le pseudo n'existe pas
@@ -57,7 +58,7 @@ class RegisterController extends BaseController {
 
 				if($checkUsername != false)
 				{
-					die("Ce pseudo est déjà utilisé");
+					header('Location: /message/Ce pseudo est déjà utilisé'); 
 				}
 
 				// On hash le mot de passe
@@ -81,7 +82,7 @@ class RegisterController extends BaseController {
 
 			}else{
 				// Le formulaire n'est pas complet
-				die("Le Formulaire est imcomplet");
+				header('Location: /message/Le Formulaire est imcomplet'); 
 			}
 		}
 	

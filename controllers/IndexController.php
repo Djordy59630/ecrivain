@@ -38,7 +38,8 @@ class IndexController extends BaseController {
 
 				// on vérifie l'adresse email
 				if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-					die("L'adresse email est incorrecte");
+					header('Location: /message/L\'adresse email est incorrecte'); 
+					
 				}
 
 				$message = $message . " Adresse mail de l'expéditeur : " . $email;
@@ -46,11 +47,11 @@ class IndexController extends BaseController {
 
 				if(mail('dev@artsetco.com', $username . ' vous a envoyé un message', $message, $headers))
                 {
-					die('mail envoyé');
+					header('Location: /message/mail envoyé'); 
                 }
                 else
                 {
-                    die('Une erreur est survenue"');
+					header('Location: /message/Une erreur est survenue'); 
                 }
 			}
 		}	
