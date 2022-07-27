@@ -93,7 +93,7 @@ class RegisterController extends BaseController {
 	
 		$template = $this->twig->load('register/index.html');
 		$render = $template->render([]);
-		echo $render;
+		print_r ( $render );
 	}
 
 
