@@ -46,7 +46,6 @@ class LoginController extends BaseController {
 					header('Location: /message/L\'utilisateur et/ou le mot de passe est incorrect'); 
 				}
 
-			
 				// L'utilisateur est le mot de passe sont corrects
 				
 	
@@ -64,7 +63,9 @@ class LoginController extends BaseController {
 		}
 	
 		$template = $this->twig->load('login/index.html');
-		echo $template->render([]);
+
+		$render = $template->render([]);
+		echo $render;
 	}
 
 	// Logout

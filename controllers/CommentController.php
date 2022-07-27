@@ -43,7 +43,8 @@ class CommentController extends BaseController {
          $template = $this->twig->load('article/comment.html');
 
          // Puis on affiche la page avec la méthode render
-         echo $template->render(['commentsIsValid' => $commentsIsValid, 'commentsIsNotValid' => $commentsIsNotValid]);
+         $render = $template->render(['commentsIsValid' => $commentsIsValid, 'commentsIsNotValid' => $commentsIsNotValid]);
+         echo $render;
     }
 
     public function delete($commentId, $articleId)

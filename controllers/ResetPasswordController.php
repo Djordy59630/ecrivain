@@ -55,7 +55,10 @@ class ResetPasswordController extends BaseController {
 		}
 	
 		$template = $this->twig->load('reset_password/index.html');
-		echo $template->render([]);
+
+		$render = $template->render([]);
+		echo $render;
+		
 	}
 
     // Index Page d'inscription
@@ -99,7 +102,8 @@ class ResetPasswordController extends BaseController {
 			if($user)
 			{
 				$template = $this->twig->load('reset_password/new_password.html');
-				echo $template->render([]);
+				$render = $template->render([]);
+				echo $render;
 			}
            
 			

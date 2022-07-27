@@ -43,7 +43,9 @@ class ArticleController extends BaseController {
          $template = $this->twig->load('article/new.html');
 
          // Puis on affiche la page avec la méthode render
-         echo $template->render([]);
+         $render = $template->render([]);
+         echo $render;
+         
     }
 
     public function edit($slug)
@@ -81,7 +83,8 @@ class ArticleController extends BaseController {
          $template = $this->twig->load('article/edit.html');
 
          // Puis on affiche la page avec la méthode render
-         echo $template->render(['article' => $currentArticle]);
+         $render = $template->render(['article' => $currentArticle]);
+         echo $render;
         
     }
 
@@ -111,7 +114,8 @@ class ArticleController extends BaseController {
          $template = $this->twig->load('article/show.html');
 
          // Puis on affiche la page avec la méthode render
-         echo $template->render(['article' => $article, 'comments' => $comments]);
+         $render = $template->render(['article' => $article, 'comments' => $comments]);
+         echo $render;
         
     }
 
