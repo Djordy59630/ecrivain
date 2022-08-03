@@ -1,5 +1,7 @@
 ## Squelette projet MVC OCR
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/05488589b3d94f568875b4b22d28238e)](https://app.codacy.com/gh/Djordy59630/ecrivain?utm_source=github.com&utm_medium=referral&utm_content=Djordy59630/ecrivain&utm_campaign=Badge_Grade_Settings)
+
 
 
 
