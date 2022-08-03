@@ -1,7 +1,5 @@
 <?php
 
-require('../models/Article.php');
-
 /**
  * 
  *  
@@ -22,7 +20,7 @@ class IndexController extends BaseController {
 
 		$this->display($render);
 
-
+		
 		
 	}
 

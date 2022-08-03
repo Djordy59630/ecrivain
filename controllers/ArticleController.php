@@ -1,6 +1,5 @@
 <?php
 
-require('../models/Article.php');
 
 use Cocur\Slugify\Slugify;
 

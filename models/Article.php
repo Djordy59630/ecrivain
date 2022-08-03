@@ -1,8 +1,5 @@
 <?php
 
-
-require_once("DbConnect.php");
-
 class Article extends DbConnect {
 
     public function index(){

@@ -1,5 +1,4 @@
 <?php
-require('../models/Login.php');
 
 /**
  * 

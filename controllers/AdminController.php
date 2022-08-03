@@ -1,5 +1,5 @@
 <?php
-require('../models/Article.php');
+
 
 /**
  *

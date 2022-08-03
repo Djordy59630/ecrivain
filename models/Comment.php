@@ -1,6 +1,5 @@
 <?php
 
-require_once("DbConnect.php");
 
 class Comment extends DbConnect {
 

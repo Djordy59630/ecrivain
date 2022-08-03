@@ -2,7 +2,6 @@
 
 use Carbon\Carbon;
 
-require('../models/ResetPassword.php');
 
 /**
  * 
