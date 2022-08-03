@@ -20,7 +20,6 @@ class DbConnect {
             return $dbh;
         }
         catch(PDOException $e){
-            print "Error DB!" .$e->getMessage() . "<br/>";
             throw new \Exception('DB ERROR');
         }
     }
