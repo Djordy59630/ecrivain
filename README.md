@@ -28,7 +28,7 @@ Tapez la commande *php -S localhost:8000 -t public* en mode console en se positi
 
 
 
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/270ea3221c104ebb915fe05531e86945)](https://www.codacy.com/gh/Djordy59630/ecrivain/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Djordy59630/ecrivain&amp;utm_campaign=Badge_Grade)
 
 
 
