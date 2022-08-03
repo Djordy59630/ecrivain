@@ -25,7 +25,8 @@ class CommentController extends BaseController {
 				$comment->new($user, $commentVerify, $request->get("article"));
 
                 header('Location: /');
-                exit;
+                
+
 
             }
         }
@@ -60,7 +61,8 @@ class CommentController extends BaseController {
 
          // on choisi la template à appeler
          header('Location: /comment/' . $articleId . '/');
-         exit;
+         
+
 
     }
 
@@ -74,7 +76,8 @@ class CommentController extends BaseController {
 
          // on choisi la template à appeler
          header('Location: /comment/' . $articleId . '/');
-         exit;
+         
+
 
     }
 }
