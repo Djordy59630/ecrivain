@@ -33,7 +33,7 @@ class IndexController extends BaseController {
 		// on vérifie si le formulaire a été envoyé 
 		if(!empty($request))
 		{
-			if(empty($request->get("email")) && !empty($request->get("username")) && !empty($request->get("message")) )
+			if(!empty($request->get("email")) && !empty($request->get("username")) && !empty($request->get("message")) )
 			{
 				
 				$email = $this->antiXss->xss_clean($request->get("email"));
@@ -67,6 +67,7 @@ class IndexController extends BaseController {
 
                 }
 			}
-		}	
+		}
+		
 	}
 }

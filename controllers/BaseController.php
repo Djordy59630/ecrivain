@@ -75,6 +75,10 @@ class BaseController {
 
             }
         }
+        else
+        {
+            header('Location: /');
+        }
 
     }
 }

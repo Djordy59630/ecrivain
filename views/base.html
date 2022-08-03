@@ -90,6 +90,15 @@
                     <h4 class="text-uppercase mb-4">A propos</h4>
                     <p class="lead mb-0">
                         Ce blog est créé dans le cadre de ma formation openClassroom
+
+                        {% if session.roles == 'ROLE_ADMIN' %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                                href="/admin/">
+                                    <button class="btn btn-primary">
+                                        Administration
+                                    </button>
+                                </a></li>
+                        {% endif %}
                         
                     </p>
                 </div>

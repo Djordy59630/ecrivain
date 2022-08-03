@@ -112,8 +112,6 @@ class ArticleController extends BaseController {
 
     public function show($slug)
     {
-
-        $this->checkUserRoles();
         
         $article = new Article();
         $article = $article->show($slug);
