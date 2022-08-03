@@ -68,7 +68,7 @@ class LoginController extends BaseController {
 		$template = $this->twig->load('login/index.html');
 
 		$render = $template->render([]);
-		print ( $render );
+		echo ( $render );
 	}
 
 	// Logout

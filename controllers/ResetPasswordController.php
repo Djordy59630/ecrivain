@@ -59,7 +59,7 @@ class ResetPasswordController extends BaseController {
 		$template = $this->twig->load('reset_password/index.html');
 
 		$render = $template->render([]);
-		print ( $render );
+		echo ( $render );
 		
 	}
 
@@ -106,7 +106,7 @@ class ResetPasswordController extends BaseController {
 			{
 				$template = $this->twig->load('reset_password/new_password.html');
 				$render = $template->render([]);
-				print ( $render );
+				echo ( $render );
 			}
            
 			

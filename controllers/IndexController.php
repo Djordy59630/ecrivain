@@ -18,7 +18,7 @@ class IndexController extends BaseController {
 
         // Puis on affiche la page avec la méthode render
 		$render = $template->render(['articles' => $articles]);
-		print ( $render );
+		echo ( $render );
 
 		
 	}

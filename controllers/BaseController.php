@@ -44,6 +44,8 @@ class BaseController {
         $this->antiXss = new AntiXSS();
 
         
+
+        
         $this->httpSession->start();
 
         if( !empty( $this->httpSession->get('user')))

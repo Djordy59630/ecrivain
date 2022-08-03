@@ -45,7 +45,7 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render([]);
-         print ( $render );
+         echo ( $render );
          
     }
 
@@ -86,7 +86,7 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render(['article' => $currentArticle]);
-         print ( $render );
+         echo ( $render );
         
     }
 
@@ -118,7 +118,7 @@ class ArticleController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render(['article' => $article, 'comments' => $comments]);
-         print ( $render );
+         echo ( $render );
         
     }
 
