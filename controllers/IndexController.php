@@ -1,4 +1,5 @@
 <?php
+
 require('../models/Article.php');
 
 /**
@@ -18,7 +19,9 @@ class IndexController extends BaseController {
 
         // Puis on affiche la page avec la méthode render
 		$render = $template->render(['articles' => $articles]);
-		echo ( $render );
+
+		$this->display($render);
+
 
 		
 	}

@@ -45,7 +45,8 @@ class CommentController extends BaseController {
 
          // Puis on affiche la page avec la méthode render
          $render = $template->render(['commentsIsValid' => $commentsIsValid, 'commentsIsNotValid' => $commentsIsNotValid]);
-         echo ( $render );
+         $this->display($render);
+
     }
 
     public function delete($commentId, $articleId)

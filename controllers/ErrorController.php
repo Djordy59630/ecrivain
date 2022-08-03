@@ -12,7 +12,8 @@ class ErrorController extends BaseController {
 
 		  // Puis on affiche la page avec la méthode render
 		  $render = $template->render();
-		  echo ( $render );
+		  $this->display($render);
+
 	}
 
 	public function message($message) {
@@ -22,7 +23,8 @@ class ErrorController extends BaseController {
 
 	// Puis on affiche la page avec la méthode render
 	$render = $template->render(['message' => $message]);
-	echo ( $render );
+	$this->display($render);
+
   }
 
 }

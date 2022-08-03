@@ -56,6 +56,11 @@ class BaseController {
 
     }
 
+    protected function display($template)
+    {
+        echo($template);
+    }
+    
     protected function checkUserRoles()
     {
         if( !empty( $this->httpSession->get('user')))
