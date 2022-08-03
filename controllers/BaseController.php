@@ -60,7 +60,7 @@ class BaseController {
     {
         echo($template);
     }
-    
+
     protected function checkUserRoles()
     {
         if( !empty( $this->httpSession->get('user')))
@@ -70,7 +70,8 @@ class BaseController {
             if($user['roles'] !== "ROLE_ADMIN")
             {
                 header('Location: /');
-                die;
+                
+
             }
         }
 

@@ -36,7 +36,8 @@ class ArticleController extends BaseController {
 				$article->new($title, $chapo, $content, $titleSlug);
 
                 header('Location: /admin/');
-                die;
+                
+
             }
         }
 
@@ -79,7 +80,8 @@ class ArticleController extends BaseController {
 				$article->edit($title, $chapo, $content, $titleSlug, $currentArticle['id']);
                 
                 header('Location: /admin/');
-                die;
+                
+
             }
         }
          // on choisi la template à appeler
@@ -101,7 +103,8 @@ class ArticleController extends BaseController {
         $article = $article->delete($id);
          // on choisi la template à appeler
          header('Location: /admin/');
-         die;
+         
+
     }
 
     public function show($slug)

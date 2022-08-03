@@ -88,7 +88,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-//var_dump($uri);die;
+//var_dump($uri);
+
 
 
 // Strip query string (?foo=bar) and decode URI
@@ -126,7 +127,8 @@ switch ($routeInfo[0]) {
         list($class, $method) = explode("/", $handler, 2);
 
         // var_dump($vars, $class, $method );
-        // die;
+        // 
+
 
         // on appelle automatique notre controlleur, avec la bonne méthode et les bons paramètres donnés à notre fonction
         // Exemple pour la syntaxe "IndexController::class . '/index'", voici ce qui sera appelé : "IndexController->index()"

@@ -33,7 +33,8 @@ class LoginController extends BaseController {
 				// on vérifie que l'email en est un
 				if(!filter_var($emailVerify, FILTER_VALIDATE_EMAIL)){
 					header('Location: /message/Ceci n\'est pas un mail'); 
-					die;
+					
+
 				}
 				
 				$userLogin = new Login();
@@ -45,7 +46,8 @@ class LoginController extends BaseController {
 				// Ici on a un user existant, on peut vérifier le mot de passe
 				if(!$user || !password_verify($request->get("password"), $user["pwd"]) ){
 					header('Location: /message/L\'utilisateur et/ou le mot de passe est incorrect'); 
-					die;
+					
+
 				}
 
 				// L'utilisateur est le mot de passe sont corrects
@@ -60,7 +62,8 @@ class LoginController extends BaseController {
 				]);
 				
 				header('Location: /'); 
-				die;
+				
+
 
 			}
 		}
@@ -77,7 +80,8 @@ class LoginController extends BaseController {
 
 		$this->httpSession->remove('user');
 		header('Location: /'); 
-		die;
+		
+
 	}
 
 }
