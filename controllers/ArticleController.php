@@ -35,6 +35,7 @@ class ArticleController extends BaseController {
 				$article->new($title, $chapo, $content, $titleSlug);
 
                 header('Location: /admin/');
+                exit;
                 
 
             }
@@ -79,7 +80,7 @@ class ArticleController extends BaseController {
 				$article->edit($title, $chapo, $content, $titleSlug, $currentArticle['id']);
                 
                 header('Location: /admin/');
-                
+                exit;
 
             }
         }
@@ -102,7 +103,7 @@ class ArticleController extends BaseController {
         $article = $article->delete($id);
          // on choisi la template à appeler
          header('Location: /admin/');
-         
+         exit;
 
     }
 
